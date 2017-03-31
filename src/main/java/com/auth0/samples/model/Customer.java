@@ -1,9 +1,9 @@
 package com.auth0.samples.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Customer {
@@ -12,9 +12,10 @@ public class Customer {
     private Long id;
 
     private String name;
-    private String contactName;
-    private String email;
-    private String phone;
+
+    @JsonIgnore
+    @OneToMany (mappedBy = "customer")
+    private List<Contact> contacts;
 
     public Long getId() {
         return id;
@@ -28,27 +29,11 @@ public class Customer {
         this.name = name;
     }
 
-    public String getContactName() {
-        return contactName;
+    public List<Contact> getContacts() {
+        return contacts;
     }
 
-    public void setContactName(String contactName) {
-        this.contactName = contactName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setContacts(List<Contact> contacts) {
+        this.contacts = contacts;
     }
 }
