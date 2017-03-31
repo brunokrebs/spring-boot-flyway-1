@@ -1,6 +1,6 @@
 create table contact (
-  id bigserial primary key,
-  customer_id bigint not null,
+  id int identity primary key,
+  customer_id int not null,
   name varchar (255) not null,
   email varchar (255) not null,
   phone varchar (255) not null,
